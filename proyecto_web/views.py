@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.template import loader
+from datetime import datetime
 
 
 # Create your views here.
-def index(request):
-    return render(request, "index.html")
+"""def index(request):
+    template = loader.get_template('index.html')
+    context = {"hoy": datetime.now()}
+    return HttpResponse(template.render(context,request))"""
+
+def index (request):
+    return render(request, 'index.html', {'hoy': datetime.now()})
 
 def demo(request):
     return HttpResponse("<h1 style='color:blue'>Hola mundo, Django.</h1>")
