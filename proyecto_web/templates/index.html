@@ -11,11 +11,22 @@
     <header>
         <h1> {{hoy}} </h1>
     </header>
-    <main></main>
+    <main>
+        <ol>
+            {% for i in objeto  %}
+            <li> {{i.nombre}} </li>
+            {% endfor %}
+        </ol>
+        <ul>
+            {% for i in libros  %}
+            <li> {{i.titulo}} </li>
+            {% endfor %}
+        </ul>
+    </main>
     <footer></footer>
    
 
 
-    <script src={% static "script.js" %}></script>
+<script src={% static "script.js" %}></script>
 </body>
 </html>

@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.template import loader
 from datetime import datetime
+from .models import Persona, Libro
 
 
 # Create your views here.
@@ -10,9 +11,16 @@ from datetime import datetime
     template = loader.get_template('index.html')
     context = {"hoy": datetime.now()}
     return HttpResponse(template.render(context,request))"""
-
+    
 def index (request):
-    return render(request, 'index.html', {'hoy': datetime.now()})
+    objeto = Persona.objects.all().order_by('id')
+    libros = Libro.objects.all()
+    contexto = {
+        'libros': libros,
+        'objeto': objeto,
+        'hoy': datetime.now()
+    }
+    return render(request, 'index.html', contexto)
 
 def demo(request):
     return HttpResponse("<h1 style='color:blue'>Hola mundo, Django.</h1>")
